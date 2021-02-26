@@ -1,0 +1,22 @@
+{
+  "name": "overflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "hapi"
+  ],
+  "author": "Jesus Antonio Garcia Zurita",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "standard": "^16.0.3"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.1.0"
+  }
+}
