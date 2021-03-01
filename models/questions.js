@@ -26,6 +26,12 @@ class Questions {
         const data = query.val()
         return data
     }
+
+    async answer (data, user) {
+        const answer = await this.collection.child(data.id).child('answers').push()
+        answer.set({text: data.answer, user: user})
+        return answers
+    }
 }
 
 module.exports = Questions;
