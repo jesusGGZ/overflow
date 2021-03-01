@@ -9,7 +9,7 @@ async function createQuestion (req, h){
     } catch (error) {
         console.error(`Ocurrio un error: ${error}`);
 
-        result h.view('ask', {
+        return h.view('ask', {
             title: 'Crear pregunta',
             error: 'Problemas creando la pregunta'
         }).code(500).takeover()

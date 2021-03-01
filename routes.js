@@ -3,6 +3,7 @@ const joi = require('joi');
 const site = require('./controllers/site');
 const user = require('./controllers/user');
 const { users } = require('./models');
+const question = require('./controllers/question');
 
     module.exports = [{
         method: 'GET',
@@ -40,6 +41,11 @@ const { users } = require('./models');
         handler: user.logout
     },
     {
+        method: 'GET',
+        path: '/ask',
+        handler: site.ask
+    },
+    {
         path: '/validate-user',
         method: 'POST',
         options: {
@@ -54,6 +60,20 @@ const { users } = require('./models');
         handler: user.validateUser
     },
     {
+        path: '/create-question',
+        method: 'POST',
+        options: {
+            validate: {
+                payload: {
+                    title: Joi.string().required(),
+                    description: Joi.string().required()
+                },
+                failAction: user.failValidation
+            }
+        },
+        handler: question.createQuestion
+    },
+    {
         method: 'GET',
         path: '/assets/{param*}',
         handler: {
@@ -61,10 +81,11 @@ const { users } = require('./models');
                 path: '.',
                 index: ['index.html']
             }
-        },
+        }
+    },
         {
             method: ['GET', 'POST'],
             path: '/{any*}',
-            handler: site.notFound
+            handler: site.notFound,
         } 
-    }]
+]
