@@ -2,6 +2,7 @@
 const joi = require('joi');
 const site = require('./controllers/site');
 const user = require('./controllers/user');
+const { users } = require('./models');
 
     module.exports = [{
         method: 'GET',
@@ -31,6 +32,11 @@ const user = require('./controllers/user');
     method: 'GET',
     path: '/login',
     handler: site.login
+    },
+    {
+        method: 'GET',
+        path: '/logout',
+        handler: user.logout
     },
     {
         path: '/validate-user',
