@@ -23,7 +23,8 @@ const { users } = require('./models');
                     name: Joi.string.required().min(3),
                     email: Joi.string().email().required(),
                     password: Joi.string().required().min(6)
-                }
+                },
+                failAction: user.failValidation
             }
         },
         handler: user.createUser
@@ -46,7 +47,8 @@ const { users } = require('./models');
                 payload: {
                     email: Joi.string().email().required(),
                     password: Joi.string().required().min(6)
-                }
+                },
+                failAction: user.failValidation
             }
         },
         handler: user.validateUser
