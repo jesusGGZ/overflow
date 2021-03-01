@@ -14,6 +14,7 @@ const user = require('./controllers/user');
         handler: site.register
     },
     {
+        path: '/create-user',
         method: 'POST',
         options: {
             validate: {
@@ -24,8 +25,25 @@ const user = require('./controllers/user');
                 }
             }
         },
-        path: '/create-user',
         handler: user.createUser
+    },
+    {
+    method: 'GET',
+    path: '/login',
+    handler: site.login
+    },
+    {
+        path: '/validate-user',
+        method: 'POST',
+        options: {
+            validate: {
+                payload: {
+                    email: Joi.string().email().required(),
+                    password: Joi.string().required().min(6)
+                }
+            }
+        },
+        handler: user.validateUser
     },
     {
         method: 'GET',
