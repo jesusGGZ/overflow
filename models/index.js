@@ -1,7 +1,7 @@
 'use strict'
 
 const firebase = require('firebase-admin');
-const serviceaccount = require('serviceaccount');
+const serviceaccount = require('../config/firebase.json');
 
 firebase.initializeApp({
     credential: firebase.credential.cert(serviceaccount),

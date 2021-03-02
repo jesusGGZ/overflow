@@ -3,7 +3,7 @@ const { writeFile } = require('fs');
 const { promisify } = require('util');
 const { join } = require('path');
 const questions = require('../models/index').questions;
-const uuid = require('uuid/v1');
+const uuid = require('uuid');
 
 const write = promisify(writeFile);
 
@@ -19,9 +19,9 @@ async function createQuestion (req, h){
             await write(join(__dirname,'..','public','uploads',filename),req.payload.image)
         }
         result = await questions.create(req.payload, req.state.user, filename)
-        console.log(`Pregunta creada con el ID: ${result}`);
+        req.log('info', `Pregunta creada con el ID: ${result}`);
     } catch (error) {
-        console.error(`Ocurrio un error: ${error}`);
+        req.log('error', `Ocurrio un error: ${error}`);
 
         return h.view('ask', {
             title: 'Crear pregunta',

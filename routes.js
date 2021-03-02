@@ -1,5 +1,5 @@
 'use strict'
-const joi = require('joi');
+const Joi = require('joi');
 const site = require('./controllers/site');
 const user = require('./controllers/user');
 const { users } = require('./models');
@@ -27,7 +27,7 @@ const question = require('./controllers/question');
         options: {
             validate: {
                 payload: {
-                    name: Joi.string.required().min(3),
+                    name: Joi.string().required().min(3),
                     email: Joi.string().email().required(),
                     password: Joi.string().required().min(6)
                 },
@@ -63,7 +63,7 @@ const question = require('./controllers/question');
             validate: {
                 payload: {
                     email: Joi.string().email().required(),
-                    password: Joi.string().required().min(6)
+                    password: Joi.string().required().min(6),
                     image: Joi.any().optional()
                 },
                 failAction: user.failValidation
