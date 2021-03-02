@@ -64,6 +64,7 @@ const question = require('./controllers/question');
                 payload: {
                     email: Joi.string().email().required(),
                     password: Joi.string().required().min(6)
+                    image: Joi.any().optional()
                 },
                 failAction: user.failValidation
             }
