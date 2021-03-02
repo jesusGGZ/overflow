@@ -94,6 +94,11 @@ const question = require('./controllers/question');
     },
     {
         method: 'GET',
+        path: '/answer/{questionId}/{answerId}',
+        handler: question.setAnswerRight
+    },
+    {
+        method: 'GET',
         path: '/assets/{param*}',
         handler: {
             directory: {
